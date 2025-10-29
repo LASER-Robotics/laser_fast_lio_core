@@ -52,6 +52,8 @@ def generate_launch_description():
     namespace = LaunchConfiguration('namespace')
     use_sim_time = LaunchConfiguration('use_sim_time')
     fast_lio_config_file_path = LaunchConfiguration('fast_lio_config_file_path')
+    topic_imu = LaunchConfiguration('topic_imu')
+    topic_pcl = LaunchConfiguration('topic_pcl')
 
     # Launch Fast Lio
     fast_lio_launch = IncludeLaunchDescription(
