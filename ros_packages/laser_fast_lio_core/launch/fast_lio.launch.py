@@ -32,6 +32,18 @@ def generate_launch_description():
 
     declared_arguments.append(
         DeclareLaunchArgument(
+            'topic_pcl',
+            default_value=default_config_file_path,
+            description='Pcl Topic.'))
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'topic_imu',
+            default_value=default_config_file_path,
+            description='IMU Topic.'))
+
+    declared_arguments.append(
+        DeclareLaunchArgument(
             'fast_lio_config_file_path',
             default_value=default_config_file_path,
             description='Config file path for fast lio.'))
@@ -53,6 +65,8 @@ def generate_launch_description():
         launch_arguments={
             'use_sim_time': use_sim_time,
             'config_file_path': fast_lio_config_file_path,
+            'topic_imu': topic_imu
+            'topic_pcl': topic_pcl
         }.items()
     )
 
