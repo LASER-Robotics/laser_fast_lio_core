@@ -67,8 +67,8 @@ def generate_launch_description():
         launch_arguments={
             'use_sim_time': use_sim_time,
             'config_file_path': fast_lio_config_file_path,
-            'topic_imu': topic_imu
-            'topic_pcl': topic_pcl
+            'topic_imu': topic_imu,
+            'topic_pcl': topic_pcl,
         }.items()
     )
 
