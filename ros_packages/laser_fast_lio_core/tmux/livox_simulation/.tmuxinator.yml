@@ -26,7 +26,7 @@ windows:
   - fast_lio:
       layout: tiled
       panes:
-        - ros2 launch laser_fast_lio_core fast_lio.launch.py
+        - ros2 launch laser_fast_lio_core fast_lio.launch.py topic_imu:=/$UAV_NAME/livox/imu topic_pcl:=/$UAV_NAME/livox/lidar fast_lio_config_file_path:=./configs/fast_lio.yaml
   - odometry:
       layout: even-horizontal
       panes:
@@ -36,3 +36,7 @@ windows:
       layout: tiled 
       panes:
         - 'history -s ros2 topic pub -1 /$UAV_NAME/control_manager/goto laser_msgs/msg/PoseWithHeading \"{position: {x: 0.0, y: 0.0, z: 1.5}, heading: 0.0}\"'
+  - rviz:
+      layout: tiled
+      panes:
+        - sleep 10; ros2 launch laser_fast_lio_core rviz.launch.py
