@@ -33,13 +33,13 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             'topic_pcl',
-            default_value=default_config_file_path,
+            default_value='',
             description='Pcl Topic.'))
 
     declared_arguments.append(
         DeclareLaunchArgument(
             'topic_imu',
-            default_value=default_config_file_path,
+            default_value='',
             description='IMU Topic.'))
 
     declared_arguments.append(
