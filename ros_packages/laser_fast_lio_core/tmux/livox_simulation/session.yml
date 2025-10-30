@@ -15,7 +15,7 @@ windows:
   - estimation_manager:
       layout: tiled
       panes:
-        - sleep 2; ros2 launch laser_uav_managers estimation_manager.launch.py params_file:="./configs/estimation_manage.yaml"
+        - sleep 2; ros2 launch laser_uav_managers estimation_manager.launch.py params_file:="./configs/estimation_manager.yaml"
   - control_manager:
       layout: tiled
       panes:
