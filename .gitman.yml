@@ -2,7 +2,7 @@ location: .gitman
 sources:
   - repo: https://github.com/LASER-Robotics/FAST_LIO.git
     name: FAST_LIO
-    rev: main
+    rev: release/1.0
     type: git
     params:
     sparse_paths:
