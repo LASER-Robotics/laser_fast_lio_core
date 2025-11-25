@@ -13,7 +13,7 @@ The `laser_fast_lio_core` package is responsible for:
 
 This package creates an abstraction layer over the standard FAST_LIO launch process. Instead of hardcoding paths or editing core configuration files for different setups, the launch files here accept arguments to select the hardware profile and topics dynamically.
 
-### 1. Flexible Parameter Loading
+### 1. Dynamic Parameter Loading
 The system uses the `fast_lio_config_file_path` argument to locate the specific configuration file for the algorithm.
 -   Inside the `params/` directory, you can define different YAML files for various sensor setups (e.g., `mid360_internal.yaml` for internal IMU usage or `mid360_external.yaml` for external IMU integration).
 -   When the launch file runs, it passes this specific path to the underlying FAST_LIO mapping node.
@@ -51,4 +51,14 @@ This is the main launch file to start the LiDAR-Inertial Odometry estimator. It 
 
 ## Configuration
 
-The `params/` directory contains configuration files for specific sensor setups. These files control the behavior of the Fast-LIO filter, including extrinsics and covariance tuning.
+The `params/` directory contains configuration files for specific sensor settings. These files control the behavior of the Fast-LIO filter, including extrinsic parameters, covariance adjustment, and point cloud preprocessing.
+
+- `mid360_external.yaml`: Configuration for performing external flights. Defines the extrinsic parameters between the LiDAR and the internal inertial unit.
+
+- `mid360_internal.yaml`: Configuration for performing internal flights. Defines the extrinsic parameters between the LiDAR and the internal inertial unit.
+
+### Helper Scripts
+
+The package includes scripts in the `scripts/` directory to facilitate visualization:
+-   `refactor_rviz_config.sh`: Automatically updates RViz configuration files with the correct UAV namespace.
+-   `refactor_plotjuggler_config.sh`: Automatically updates PlotJuggler layouts.
