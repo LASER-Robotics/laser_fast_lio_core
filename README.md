@@ -9,11 +9,25 @@ The `laser_fast_lio_core` package is responsible for:
 2.  **Configuration Management:** storing specific parameter files for different LiDAR/IMU setups (e.g., Livox Mid360 with internal or external IMU).
 3.  **Topic Abstraction:** Handling the remapping of input PointCloud and IMU topics to match the LUS standard.
 
-## Dependencies
+## How It Works
 
-This package depends on:
--   **`fast_lio`**: The core LIO algorithm package.
--   **`ros_environment`**: For environment variable handling (optional but recommended).
+This package creates an abstraction layer over the standard FAST_LIO launch process. Instead of hardcoding paths or editing core configuration files for different setups, the launch files here accept arguments to select the hardware profile and topics dynamically.
+
+### 1. Flexible Parameter Loading
+The system uses the `fast_lio_config_file_path` argument to locate the specific configuration file for the algorithm.
+-   Inside the `params/` directory, you can define different YAML files for various sensor setups (e.g., `mid360_internal.yaml` for internal IMU usage or `mid360_external.yaml` for external IMU integration).
+-   When the launch file runs, it passes this specific path to the underlying FAST_LIO mapping node.
+-   This allows you to switch between different LiDAR models or mounting configurations (extrinsics) without modifying the source code.
+
+### 2. Topic and Namespace Abstraction
+The launch file accepts generic arguments for sensor topics (`topic_imu`, `topic_pcl`) and handles the remapping to the estimator's expected inputs.
+-   It relies on the `namespace` argument (defaulting to the `UAV_NAME` environment variable) to ensure multi-robot compatibility.
+-   This ensures that the FAST_LIO node publishes odometry and map data under the correct robot namespace (e.g., `/uav1/fast_lio/...`).
+
+### 3. Visualization Helpers
+To make debugging easier in multi-agent simulations, this package includes scripts (specifically `scripts/refactor_rviz_config.sh`) that automatically update RViz configuration files.
+-   Before launching RViz, the script creates a temporary copy of the default config and replaces generic placeholders (like `uav1`) with the current `UAV_NAME`.
+-   This prevents the common issue of RViz listening to `/uav1/fast_lio/cloud_registered` when you are actually flying `uav2`.
 
 ## Launch Files
 
@@ -38,34 +52,3 @@ This is the main launch file to start the LiDAR-Inertial Odometry estimator. It 
 ## Configuration
 
 The `params/` directory contains configuration files for specific sensor setups. These files control the behavior of the Fast-LIO filter, including extrinsics and covariance tuning.
-
-### Example Config (`mid360_external.yaml`)
-Key parameters include:
-
-```yaml
-# Sensor Preprocessing
-preprocess:
-  lidar_type: 1       # 1 for Livox serials LiDAR (e.g., Mid360)
-  scan_line: 16
-  scan_rate: 10
-  timestamp_unit: 3
-
-# Mapping & Extrinsics
-mapping:
-  extrinsic_est_en: true  # Online estimation of IMU-LiDAR extrinsics
-  extrinsic_T: [-0.0, -0.0, 0.0]
-  extrinsic_R: [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
-
-# Publishing Settings
-publish:
-  path_en: true           # Publish the trajectory path
-  scan_publish_en: true   # Publish the registered scan
-  scan_bodyframe_pub_en: true # Output scans in the IMU-body-frame
-  dense_publish_en: true  # Dense point cloud output
-
-# Frame Definitions
-transform:
-  fcu_frame: "uav1/fcu"
-  world_frame: "uav1/world"
-  lidar_frame: "uav1/livox_lidar"
-  imu_frame: "uav1/livox_imu"
