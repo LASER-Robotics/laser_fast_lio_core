@@ -62,3 +62,9 @@ The `params/` directory contains configuration files for specific sensor setting
 The package includes scripts in the `scripts/` directory to facilitate visualization:
 -   `refactor_rviz_config.sh`: Automatically updates RViz configuration files with the correct UAV namespace.
 -   `refactor_plotjuggler_config.sh`: Automatically updates PlotJuggler layouts.
+
+## Packages Included
+
+| Package | Description | Repository |
+| :--- | :--- | :--- |
+| `fast_lio` | Contains the node that implements the FAST-LIO algorithm. | [Link to repo](https://github.com/LASER-Robotics/FAST_LIO) |
