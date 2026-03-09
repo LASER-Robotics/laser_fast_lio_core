@@ -51,6 +51,6 @@
     transform:
       fcu_frame: "uav1/fcu"
       world_frame: "uav1/world"
-      lidar_frame: "uav1/livox_lidar"
-      imu_frame: "uav1/livox_imu"
+      lidar_frame: "uav1/livox"
+      imu_frame: "uav1/livox"
 
