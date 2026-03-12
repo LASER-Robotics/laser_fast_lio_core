@@ -31,7 +31,7 @@ windows:
   - fast_lio:
       layout: tiled
       panes:
-        - ros2 launch laser_fast_lio_core fast_lio.launch.py topic_imu:=/$UAV_NAME/livox/imu topic_pcl:=/$UAV_NAME/livox/lidar fast_lio_config_file_path:=./configs/fast_lio.yaml
+        - ros2 launch laser_fast_lio_core fast_lio.launch.py topic_imu:=/$UAV_NAME/livox_up/imu topic_pcl:=/$UAV_NAME/livox_up/lidar fast_lio_config_file_path:=./configs/fast_lio.yaml
   - odometry:
       layout: even-horizontal
       panes:
