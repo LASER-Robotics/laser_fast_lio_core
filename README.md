@@ -80,4 +80,4 @@ The Mid-360 profiles currently contain `uav5/...` frame names. Adapt those and t
 
 The package includes `rviz.launch.py`, RViz layouts and scripts that adapt visualization settings to `UAV_NAME`. The `tmux/livox_simulation/` session combines the LiDAR simulation with the LUS stack and its own configuration files.
 
-See the [FAST-LIO README](ros_packages/fast_lio/README.md) for estimator details and upstream references.
+See the [FAST-LIO README](https://github.com/LASER-Robotics/FAST_LIO) for estimator details and upstream references.
